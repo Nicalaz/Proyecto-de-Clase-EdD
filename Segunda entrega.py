@@ -10,4 +10,12 @@ class Nodo:
 class Arbol:
     def __init__(self):
         return
-    
+
+#Recorrido inorden
+
+def inorden(self, root):
+    if root is None:
+        return
+    self.inorden(root.left)
+    print(root.value)
+    self.inorden(root.right)
