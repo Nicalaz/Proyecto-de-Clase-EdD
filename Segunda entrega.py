@@ -117,19 +117,12 @@ class ArbolAVL:
         if izquierda:
             return izquierda
         return self.buscar(nodo.derecha, nombre)
-    
-    def obtenerComunaMasCercana(self, raiz):
-        if raiz is None:
-            return None
-    
-    def getMaxNodo(self, nodo):
-        if nodo is None or nodo.derecha is None:
-            return nodo
-        return self.getMaxNodo(nodo.derecha)
+
         
-# Importación de librerias de BigTree para mostrar la estructura del árbol en terminal, ya no es gráfico
-# Importante primero instalar las librerias, usen pip install bigtree en una terminal
-from bigtree import BinaryNode
+# Importación de librerias de BigTree y matplotlib para gráficar el árbol
+# Importante primero instalar las librerias, usen pip install bigtree matplotlib en una terminal
+from bigtree import BinaryNode, plot_tree, reingold_tilford
+import matplotlib.pyplot as plt
 
 # Función exclusiva para árboles. Se optó por crear esta función para mostrar la estructura del árbol con la ruta más corta
 def graficaBigTree(nodo):
@@ -199,13 +192,10 @@ if encontrar:
 else:
     print("No se encontró la comuna.")
 
-dist1 = ruta1.getMaxNodo(ruta1.raiz).distancia
-dist2 = ruta2.getMaxNodo(ruta2.raiz).distancia
-dist3 = ruta3.getMaxNodo(ruta3.raiz).distancia
-mejor = min(dist1, dist2, dist3)
-if mejor == dist1:
-    print("La mejor ruta es la Ruta 1")
-elif mejor == dist2:
-    print("La mejor ruta es la Ruta 2")
-else:
-    print("La mejor ruta es la Ruta 3")
+##########GRAFICO DEL ARBOL
+#print("\n--- Después de inserciones ---")
+#raiz = graficaBigTree(avl.raiz)
+#reingold_tilford(raiz)
+#plot_tree(raiz, "-ok")
+#plt.title("Árbol AVL después de las inserciones")
+#plt.show()
