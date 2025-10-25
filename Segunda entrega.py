@@ -4,8 +4,9 @@
 class Nodo:
     
     # Constructor
-    def __init__(self, distancia):
+    def __init__(self, nombre, distancia):
         self.distancia = distancia # Cada nodo contendrá el valor de la úbicación respecto a la actual raíz
+        self.nombre = nombre
         self.derecha = None
         self.izquierda = None
         self.altura = 1
@@ -61,17 +62,17 @@ class ArbolAVL:
         self.raiz = None
     
     # Método para insertar las distancias de las ubicaciones en el árbol
-    def insercion(self, distancia):
-        self.raiz = self.insercionRecursiva(self.raiz, distancia) 
+    def insercion(self, nombre, distancia):
+        self.raiz = self.insercionRecursiva(self.raiz, nombre, distancia) 
     
     # Método para insertar un nuevo nodo en el árbol en la posición correcta
-    def insercionRecursiva(self, nodo, distancia):
+    def insercionRecursiva(self, nodo, nombre, distancia):
         if not nodo:
-            return Nodo(distancia)
+            return Nodo(nombre, distancia)
         if distancia < nodo.distancia:
-            nodo.izquierda = self.insercionRecursiva(nodo.izquierda, distancia)
+            nodo.izquierda = self.insercionRecursiva(nodo.izquierda, nombre, distancia)
         elif distancia > nodo.distancia:
-            nodo.derecha = self.insercionRecursiva(nodo.derecha, distancia)
+            nodo.derecha = self.insercionRecursiva(nodo.derecha, nombre, distancia)
         else:
             return nodo
         
@@ -103,7 +104,7 @@ class ArbolAVL:
         if raiz is None:
             return
         self.inorden(raiz.izquierda)
-        print(raiz.distancia)
+        print(f"Comuna: {raiz.nombre}, Distancia acumulada: {raiz.distancia} km")
         self.inorden(raiz.derecha)
         
 # Importación de librerias de BigTree y matplotlib para gráficar el árbol
@@ -121,16 +122,50 @@ def graficaBigTree(nodo):
     return arbol
 
 # Prueba para verificar el correcto funcionamiento de BigTree
-avl = ArbolAVL()
-values_to_insert = [10, 20, 30, 40, 50, 25]
+print("----------RUTA 1----------")
+ruta1 = ArbolAVL()
+values_to_insert = [0, 3, 6, 9 ,12]
+nombres_to_insert = ["La Concordia","Antonia Santos","San Alonso","San Francisco","UIS"]
+
 
 print("Insertando valores:", values_to_insert)
-for val in values_to_insert:
-    avl.insercion(val)
+for nombre, val in zip(nombres_to_insert, values_to_insert):
+    ruta1.insercion(nombre, val)
 
-print("\n--- Después de inserciones ---")
-raiz = graficaBigTree(avl.raiz)
-reingold_tilford(raiz)
-plot_tree(raiz, "-ok")
-plt.title("Árbol AVL después de las inserciones")
-plt.show()
+print("RUTA1 inorden:")
+ruta1.inorden(ruta1.raiz)
+
+print("----------RUTA 2----------")
+#####RUTA2#######
+ruta2 = ArbolAVL()
+values_to_insert2 = [0, 2, 4, 6, 8]
+nombres_to_insert2 = ["La Concordia","Garcia Rovira","Granada","Gaitan","UIS"]
+
+print("Insertando valores:", values_to_insert2)
+for nombre, val in zip(nombres_to_insert2, values_to_insert2):
+    ruta2.insercion(nombre, val)
+
+print("RUTA2 inorden:")
+ruta2.inorden(ruta2.raiz)
+
+print("----------RUTA 3----------")
+#####RUTA3#######
+ruta3 = ArbolAVL()
+values_to_insert3 = [0, 1, 2, 3, 4]
+nombres_to_insert3 = ["La Concordia","Kennedy","San Francisco","San Alonso","UIS"]
+
+print("Insertando valores:", values_to_insert3)
+for nombre, val in zip(nombres_to_insert3, values_to_insert3):
+    ruta3.insercion(nombre, val)
+
+print("RUTA3 inorden:")
+ruta3.inorden(ruta3.raiz)
+
+
+##########GRAFICO DEL ARBOL
+#print("\n--- Después de inserciones ---")
+#raiz = graficaBigTree(avl.raiz)
+#reingold_tilford(raiz)
+#plot_tree(raiz, "-ok")
+#plt.title("Árbol AVL después de las inserciones")
+#plt.show()
