@@ -127,8 +127,8 @@ class ArbolAVL:
             return nodo
         return self.getMaxNodo(nodo.derecha)
         
-# Importación de librerias de BigTree y matplotlib para gráficar el árbol
-# Importante primero instalar las librerias, usen pip install bigtree matplotlib en una terminal
+# Importación de librerias de BigTree para mostrar la estructura del árbol en términal
+# Importante primero instalar las librerias, usar pip install bigtree
 from bigtree import BinaryNode, plot_tree, reingold_tilford
 import matplotlib.pyplot as plt
 
@@ -147,7 +147,6 @@ def graficaBigTree(nodo):
     return arbol
 
 #Optimizacion de rutas
-# Prueba para verificar el correcto funcionamiento de BigTree
 print("----------RUTA 1----------")
 ruta1 = ArbolAVL()
 values_to_insert = [0, 3, 6, 9 ,12]
@@ -158,7 +157,7 @@ print("Insertando valores:", values_to_insert)
 for nombre, val in zip(nombres_to_insert, values_to_insert):
     ruta1.insercion(nombre, val)
 
-print("RUTA1 inorden:")
+print("Recorrido 1 inorden:")
 ruta1.inorden(ruta1.raiz)
 print("\n")
 arbol = graficaBigTree(ruta1.raiz)
@@ -174,7 +173,7 @@ print("Insertando valores:", values_to_insert2)
 for nombre, val in zip(nombres_to_insert2, values_to_insert2):
     ruta2.insercion(nombre, val)
 
-print("RUTA2 inorden:")
+print("Recorrido 2 inorden:")
 ruta2.inorden(ruta2.raiz)
 print("\n")
 arbol = graficaBigTree(ruta2.raiz)
@@ -190,20 +189,20 @@ print("Insertando valores:", values_to_insert3)
 for nombre, val in zip(nombres_to_insert3, values_to_insert3):
     ruta3.insercion(nombre, val)
 
-print("RUTA3 inorden:")
+print("Recorrido 3 inorden:")
 ruta3.inorden(ruta3.raiz)
 print("\n")
 arbol = graficaBigTree(ruta3.raiz)
 arbol.hshow()
 
 print("\n")
-#PRUEBA BUSQUEDA
+#Busqueda
 encontrar = ruta1.buscar(ruta2.raiz, "San Francisco")
 if encontrar:
     print(f"Comuna {encontrar.nombre} encontrada a {encontrar.distancia} km.")
 else:
     print("No se encontró la comuna.")
-
+print("\n")
 dist1 = ruta1.getMaxNodo(ruta1.raiz).distancia
 dist2 = ruta2.getMaxNodo(ruta2.raiz).distancia
 dist3 = ruta3.getMaxNodo(ruta3.raiz).distancia
