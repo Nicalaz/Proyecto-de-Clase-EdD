@@ -106,6 +106,18 @@ class ArbolAVL:
         self.inorden(raiz.izquierda)
         print(f"Comuna: {raiz.nombre}, Distancia acumulada: {raiz.distancia} km")
         self.inorden(raiz.derecha)
+
+# Método para buscar comunas
+    def buscar(self, nodo, nombre):
+        if nodo is None:
+            return None
+        if nodo.nombre.lower() == nombre.lower():
+            return nodo
+        izquierda = self.buscar(nodo.izquierda, nombre)
+        if izquierda:
+            return izquierda
+        return self.buscar(nodo.derecha, nombre)
+
         
 # Importación de librerias de BigTree y matplotlib para gráficar el árbol
 # Importante primero instalar las librerias, usen pip install bigtree matplotlib en una terminal
@@ -161,6 +173,13 @@ for nombre, val in zip(nombres_to_insert3, values_to_insert3):
 print("RUTA3 inorden:")
 ruta3.inorden(ruta3.raiz)
 
+print("\n")
+##PRUEBA BUSQUEDA
+encontrar = ruta1.buscar(ruta2.raiz, "San Francisco")
+if encontrar:
+    print(f"Comuna {encontrar.nombre} encontrada a {encontrar.distancia} km.")
+else:
+    print("No se encontró la comuna.")
 
 ##########GRAFICO DEL ARBOL
 #print("\n--- Después de inserciones ---")
