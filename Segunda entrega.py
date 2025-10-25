@@ -105,3 +105,32 @@ class ArbolAVL:
         self.inorden(raiz.izquierda)
         print(raiz.distancia)
         self.inorden(raiz.derecha)
+        
+# Importación de librerias de BigTree y matplotlib para gráficar el árbol
+# Importante primero instalar las librerias, usen pip install bigtree matplotlib en una terminal
+from bigtree import BinaryNode, plot_tree, reingold_tilford
+import matplotlib.pyplot as plt
+
+# Función exclusiva para árboles. Se optó por crear esta función para gráficar el árbol con la ruta más corta
+def graficaBigTree(nodo):
+    if nodo is None:
+        return None
+    arbol = BinaryNode(str(nodo.distancia))
+    arbol.left = graficaBigTree(nodo.izquierda)
+    arbol.right = graficaBigTree(nodo.derecha)
+    return arbol
+
+# Prueba para verificar el correcto funcionamiento de BigTree
+avl = ArbolAVL()
+values_to_insert = [10, 20, 30, 40, 50, 25]
+
+print("Insertando valores:", values_to_insert)
+for val in values_to_insert:
+    avl.insercion(val)
+
+print("\n--- Después de inserciones ---")
+raiz = graficaBigTree(avl.raiz)
+reingold_tilford(raiz)
+plot_tree(raiz, "-ok")
+plt.title("Árbol AVL después de las inserciones")
+plt.show()
