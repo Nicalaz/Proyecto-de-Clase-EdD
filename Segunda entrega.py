@@ -146,6 +146,7 @@ def graficaBigTree(nodo):
             
     return arbol
 
+#Optimizacion de rutas
 # Prueba para verificar el correcto funcionamiento de BigTree
 print("----------RUTA 1----------")
 ruta1 = ArbolAVL()
@@ -159,11 +160,12 @@ for nombre, val in zip(nombres_to_insert, values_to_insert):
 
 print("RUTA1 inorden:")
 ruta1.inorden(ruta1.raiz)
+print("\n")
 arbol = graficaBigTree(ruta1.raiz)
 arbol.hshow()
 
+# Ruta 2
 print("----------RUTA 2----------")
-#####RUTA2#######
 ruta2 = ArbolAVL()
 values_to_insert2 = [0, 2, 4, 6, 8]
 nombres_to_insert2 = ["La Concordia","Garcia Rovira","Granada","Gaitan","UIS"]
@@ -174,11 +176,12 @@ for nombre, val in zip(nombres_to_insert2, values_to_insert2):
 
 print("RUTA2 inorden:")
 ruta2.inorden(ruta2.raiz)
+print("\n")
 arbol = graficaBigTree(ruta2.raiz)
 arbol.hshow()
 
 print("----------RUTA 3----------")
-#####RUTA3#######
+# Ruta 3
 ruta3 = ArbolAVL()
 values_to_insert3 = [0, 1, 2, 3, 4]
 nombres_to_insert3 = ["La Concordia","Kennedy","San Francisco","San Alonso","UIS"]
@@ -189,11 +192,12 @@ for nombre, val in zip(nombres_to_insert3, values_to_insert3):
 
 print("RUTA3 inorden:")
 ruta3.inorden(ruta3.raiz)
+print("\n")
 arbol = graficaBigTree(ruta3.raiz)
 arbol.hshow()
 
 print("\n")
-##PRUEBA BUSQUEDA
+#PRUEBA BUSQUEDA
 encontrar = ruta1.buscar(ruta2.raiz, "San Francisco")
 if encontrar:
     print(f"Comuna {encontrar.nombre} encontrada a {encontrar.distancia} km.")
