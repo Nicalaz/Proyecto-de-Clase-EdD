@@ -117,24 +117,37 @@ class ArbolAVL:
         if izquierda:
             return izquierda
         return self.buscar(nodo.derecha, nombre)
-
+    
+    def obtenerComunaMasCercana(self, raiz):
+        if raiz is None:
+            return None
+    
+    def getMaxNodo(self, nodo):
+        if nodo is None or nodo.derecha is None:
+            return nodo
+        return self.getMaxNodo(nodo.derecha)
         
-# Importación de librerias de BigTree y matplotlib para gráficar el árbol
-# Importante primero instalar las librerias, usen pip install bigtree matplotlib en una terminal
-from bigtree import BinaryNode, plot_tree, reingold_tilford
-import matplotlib.pyplot as plt
+# Importación de librerias de BigTree para mostrar la estructura del árbol en terminal, ya no es gráfico
+# Importante primero instalar las librerias, usen pip install bigtree en una terminal
+from bigtree import BinaryNode
 
-# Función exclusiva para árboles. Se optó por crear esta función para gráficar el árbol con la ruta más corta
+# Función exclusiva para árboles. Se optó por crear esta función para mostrar la estructura del árbol con la ruta más corta
 def graficaBigTree(nodo):
     if nodo is None:
         return None
-    arbol = BinaryNode(str(nodo.distancia))
-    arbol.left = graficaBigTree(nodo.izquierda)
-    arbol.right = graficaBigTree(nodo.derecha)
+    arbol = BinaryNode(f"{nodo.nombre}({nodo.distancia} km)")
+    
+    if nodo.izquierda:
+        arbol.left = graficaBigTree(nodo.izquierda)
+    
+    if nodo.derecha:
+        arbol.right = graficaBigTree(nodo.derecha)
+            
     return arbol
 
 # Prueba para verificar el correcto funcionamiento de BigTree
-print("----------RUTA 1----------")
+# Ruta 1
+print("---------- RUTA 1 ----------")
 ruta1 = ArbolAVL()
 values_to_insert = [0, 3, 6, 9 ,12]
 nombres_to_insert = ["La Concordia","Antonia Santos","San Alonso","San Francisco","UIS"]
@@ -144,11 +157,12 @@ print("Insertando valores:", values_to_insert)
 for nombre, val in zip(nombres_to_insert, values_to_insert):
     ruta1.insercion(nombre, val)
 
-print("RUTA1 inorden:")
-ruta1.inorden(ruta1.raiz)
+print("Recorrido inorden:")
+arbol = graficaBigTree(ruta1.raiz)
+arbol.hshow()
 
-print("----------RUTA 2----------")
-#####RUTA2#######
+# Ruta 2
+print("---------- RUTA 2 ----------")
 ruta2 = ArbolAVL()
 values_to_insert2 = [0, 2, 4, 6, 8]
 nombres_to_insert2 = ["La Concordia","Garcia Rovira","Granada","Gaitan","UIS"]
@@ -157,11 +171,13 @@ print("Insertando valores:", values_to_insert2)
 for nombre, val in zip(nombres_to_insert2, values_to_insert2):
     ruta2.insercion(nombre, val)
 
-print("RUTA2 inorden:")
-ruta2.inorden(ruta2.raiz)
+print("Recorrido inorden:")
+arbol = graficaBigTree(ruta2.raiz)
+arbol.hshow()
 
-print("----------RUTA 3----------")
-#####RUTA3#######
+# Ruta 3
+print("---------- RUTA 3 ----------")
+
 ruta3 = ArbolAVL()
 values_to_insert3 = [0, 1, 2, 3, 4]
 nombres_to_insert3 = ["La Concordia","Kennedy","San Francisco","San Alonso","UIS"]
@@ -170,21 +186,26 @@ print("Insertando valores:", values_to_insert3)
 for nombre, val in zip(nombres_to_insert3, values_to_insert3):
     ruta3.insercion(nombre, val)
 
-print("RUTA3 inorden:")
-ruta3.inorden(ruta3.raiz)
+print("Recorrido inorden:")
+arbol = graficaBigTree(ruta3.raiz)
+arbol.hshow()
 
 print("\n")
-##PRUEBA BUSQUEDA
+
+# Prueba de busqueda
 encontrar = ruta1.buscar(ruta2.raiz, "San Francisco")
 if encontrar:
     print(f"Comuna {encontrar.nombre} encontrada a {encontrar.distancia} km.")
 else:
     print("No se encontró la comuna.")
 
-##########GRAFICO DEL ARBOL
-#print("\n--- Después de inserciones ---")
-#raiz = graficaBigTree(avl.raiz)
-#reingold_tilford(raiz)
-#plot_tree(raiz, "-ok")
-#plt.title("Árbol AVL después de las inserciones")
-#plt.show()
+dist1 = ruta1.getMaxNodo(ruta1.raiz).distancia
+dist2 = ruta2.getMaxNodo(ruta2.raiz).distancia
+dist3 = ruta3.getMaxNodo(ruta3.raiz).distancia
+mejor = min(dist1, dist2, dist3)
+if mejor == dist1:
+    print("La mejor ruta es la Ruta 1")
+elif mejor == dist2:
+    print("La mejor ruta es la Ruta 2")
+else:
+    print("La mejor ruta es la Ruta 3")
