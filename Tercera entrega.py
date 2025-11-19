@@ -120,3 +120,52 @@ def seleccionar_barrio(mensaje):
                 print("Número de barrio inválido.")
         except ValueError:
             print("Por favor, ingresa un número válido.")
+
+def reconstruir_ruta(predecesores, origen_idx, destino_idx):
+    
+    ruta = []
+    actual_idx = destino_idx
+    
+    while actual_idx != -1:
+        ruta.append(ListaBarrios[actual_idx])
+        if actual_idx == origen_idx:
+            break
+        actual_idx = predecesores[actual_idx]
+    
+    if ruta[-1] == ListaBarrios[origen_idx]:
+        return ruta[::-1]
+    else:
+        return None
+
+def encontrarRuta():
+    """Función principal para encontrar la ruta más corta del barrio de un estudiante a la UIS."""
+    print("\n--- SISTEMA DE OPTIMIZACIÓN DE RUTAS A LA UIS ---")
+    
+    #indicar su barrio de origen
+    origen_idx = seleccionar_barrio("Indica el número de tu barrio de partida:")
+    origen_nombre = ListaBarrios[origen_idx]
+    destino_idx = UIS_IDX
+    destino_nombre = ListaBarrios[destino_idx]
+    
+    print(f"\nBuscando la ruta más eficiente de {origen_nombre} a {destino_nombre}...")
+
+    # Usamos Bellman-Ford para encontrar la mejor ruta.
+    distancias, predecesores = GrafoRed.bellman_ford(origen_idx)
+    
+    distancia_minima = distancias[destino_idx]
+    
+    if distancia_minima == float("inf"):
+        print(f"\n No se encontró una ruta de {origen_nombre} a {destino_nombre}.")
+    else:
+        ruta = reconstruir_ruta(predecesores, origen_idx, destino_idx)
+        
+        print("\n MEJOR RUTA ENCONTRADA")
+        print(f"Distancia Total (Tiempo estimado): {distancia_minima} minutos")
+        print("Ruta Sugerida:")
+        
+        # Formatear la ruta como Barrio A -> Barrio B -> ... -> UIS
+        ruta_formateada = " -> ".join(ruta)
+        print(f"**{ruta_formateada}**")
+
+# Ejecución 
+encontrarRuta()
