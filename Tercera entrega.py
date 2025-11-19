@@ -1,7 +1,6 @@
 class Barrio:
     def __init__(self, nombre):
         self.nombre = nombre
-        self.estudiantes = []
 
 class GrafoBarrios:
     def __init__(self):
@@ -138,7 +137,7 @@ def reconstruir_ruta(predecesores, origen_idx, destino_idx):
         return None
 
 def encontrarRuta():
-    
+
     print("\n--- SISTEMA DE OPTIMIZACIÓN DE RUTAS A LA UIS ---")
     
     #indicar su barrio de origen
