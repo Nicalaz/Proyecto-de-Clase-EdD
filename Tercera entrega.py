@@ -36,3 +36,20 @@ class GrafoBarrios:
             print(f"Conexión de {self.barrios[b1_indice].nombre} a {self.barrios[b2_indice].nombre} eliminada.")
         else:
             print("Conexión no encontrada.")
+
+    #Calcula la distancia más corta desde un nodo_origen_idx a todos los demás, y almacena el predecesor para reconstruir la ruta. Retorna: (distancia, predecesor)
+    def bellman_ford(self, nodo_origen_idx):
+        num_barrios = len(self.barrios)
+        distancia = [float("inf")] * num_barrios
+        predecesor = [-1] * num_barrios 
+
+        distancia[nodo_origen_idx] = 0
+
+        for _ in range(num_barrios - 1):
+            for b1, b2, peso in self.conexiones:
+                if distancia[b1] != float("inf") and distancia[b1] + peso < distancia[b2]:
+                    distancia[b2] = distancia[b1] + peso
+                    predecesor[b2] = b1  
+
+        return distancia, predecesor
+
