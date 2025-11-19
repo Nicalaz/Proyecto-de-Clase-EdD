@@ -138,7 +138,7 @@ def reconstruir_ruta(predecesores, origen_idx, destino_idx):
         return None
 
 def encontrarRuta():
-    """Función principal para encontrar la ruta más corta del barrio de un estudiante a la UIS."""
+    
     print("\n--- SISTEMA DE OPTIMIZACIÓN DE RUTAS A LA UIS ---")
     
     #indicar su barrio de origen
