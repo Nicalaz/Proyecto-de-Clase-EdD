@@ -89,3 +89,34 @@ Pesos_Nombres = [
     ("UIS", "Barrio Universidad", 5), ("Barrio Universidad", "UIS", 3), ("UIS", "San Alonso", 4),
     ("San Alonso", "UIS", 4), ("San Francisco", "Barrio Universidad", 3), ("Barrio Universidad", "San Francisco", 3)
 ]
+
+GrafoRed = GrafoBarrios()
+for barrio_nombre in ListaBarrios:
+    GrafoRed.agregar_barrio(barrio_nombre)
+
+# Convertir las conexiones de nombres a índices
+for b_origen, b_destino, peso in Pesos_Nombres:
+    idx_origen = idx[b_origen]
+    idx_destino = idx[b_destino]
+    GrafoRed.conectar_barrios(idx_origen, idx_destino, peso)
+
+
+
+def seleccionar_barrio(mensaje):
+    
+    print("\nLista de barrios disponibles:")
+    for i, nombre in enumerate(ListaBarrios):
+        print(f"{i}: {nombre}")
+    
+    while True:
+        try:
+            seleccion = int(input(f"{mensaje} "))
+            if 0 <= seleccion < len(ListaBarrios):
+                if seleccion == UIS_IDX:
+                    print("¡Ya estás en la UIS! Por favor, elige otro barrio de salida.")
+                    continue
+                return seleccion
+            else:
+                print("Número de barrio inválido.")
+        except ValueError:
+            print("Por favor, ingresa un número válido.")
