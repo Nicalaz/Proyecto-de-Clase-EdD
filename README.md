@@ -28,3 +28,7 @@ La entrega final y definitiva abordó el problema de la optimización de rutas c
 - **Reconstrucción de la ruta**: se implementó una función para reconstruir la ruta óptima paso a paso a través de los predecesores calculados por Bellman Ford.
 
 Esta implementación final proporcionó una solución mucho más completa al problema de optimización de rutas, calculando de manera dinámica la ruta más eficiente en una red interconectada, superando las limitaciones secuenciales de la implementación 1 y de organización jerárquica de la implementación 2.
+
+# Link Presentación
+https://www.canva.com/design/DAG4ze7dwtI/WPUMXhPK9TGD9WzrAvK66A/edit
+
