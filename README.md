@@ -1,4 +1,6 @@
 # Proyecto de Clase EdD - Optimización de Rutas
+**Carlos Fabián Morales Carrillo 2240062** - **Nicolás Alberto Arciniegas Rincón 2240087** - **Juan Felipe Mora Bejarano 2241754** - **Juan Pablo Vera Suarez 2241807**
+
 Este proyecto se centró en la implementación de un sistema de optimización de rutas, mediante varias estructuras de datos, para determinar la mejor ruta que los estudiantes de la UIS pueden tomar desde cualquier punto de la ciudad de Bucaramanga hasta la Universidad. El objetivo final fue determinar la ruta más eficiente desde sus puntos de origen, simulando una lista de comunas y barrios. Para ello, el desarrollo del proyecto se realizó en tres entregas con implementaciones diferentes, cada una empleando una estructura de datos más compleja, con el fin de mejorar la eficiencia y la efectividad del problema en cada implementación.
 
 # Entrega 1 - listas Simplemente Enlazadas
