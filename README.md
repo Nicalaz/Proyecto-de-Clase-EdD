@@ -23,7 +23,7 @@ Esta segunda implementación, resolvió los problemas de eficiencia de la etapa 
 # Entrega 3 - Grafos 
 La entrega final y definitiva abordó el problema de la optimización de rutas como un desafío de la Teoría de Grafos, que es el modelo más adecuado para representar redes complejas. Mediante esta implementación, se lograron los siguientes objetivos:
 
-- **Modelado de la red**: se creó un Grafo Dirigido Ponderado donde cada barrio/comuna es un nodo y las conexiones entre ellos son aristas con un peso de tiempo o distancia asignado.
+- **Modelado de la red**: se creó un Grafo Dirigido Ponderado donde cada barrio es un nodo y las conexiones entre ellos son aristas con un peso de tiempo promedio de transporte entre los barrios.
 - **Algoritmo Bellman Ford**: se implementó también este algoritmo para encontrar el camino más corto desde cualquier nodo de origen hasta el destino final que es la Universidad.
 - **Reconstrucción de la ruta**: se implementó una función para reconstruir la ruta óptima paso a paso a través de los predecesores calculados por Bellman Ford.
 
